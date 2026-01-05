@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب تبرع - Give Hope</title>
+    <!-- Bootstrap CSS RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Arabic Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Include Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Header -->
+    <section class="bg-gradient-primary text-white py-5 mb-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="fas fa-hand-holding-heart ms-3"></i>
+                        نموذج طلب المساعدة
+                    </h1>
+                    <p class="lead mb-0">املأ جميع الحقول المطلوبة بدقة للحصول على المساعدة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Progress Steps -->
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="step-item">
+                                <div class="step-circle">
+                                    <i class="fas fa-list"></i>
+                                </div>
+                                <span class="step-label">اختر نوع المساعدة</span>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="step-item active">
+                                <div class="step-circle">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <span class="step-label">املأ النموذج</span>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="step-item">
+                                <div class="step-circle">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <span class="step-label">إرسال الطلب</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back Button -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <a href="donation-type-selection.html" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-right ms-2"></i>
+                            العودة لاختيار نوع المساعدة
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Donation Request Form -->
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-gradient-primary text-white text-center py-4">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-heart ms-2"></i>
+                            نموذج طلب التبرع
+                        </h3>
+                        <p class="mb-0 mt-2">املأ جميع الحقول المطلوبة بدقة</p>
+                    </div>
+                    
+                    <div class="card-body p-5">
+                        <form id="donationRequestForm">
+                            <!-- Request Type Selection (Read-only) -->
+                            <div class="mb-4">
+                                <label for="requestType" class="form-label fw-bold">
+                                    <i class="fas fa-list-ul ms-2 text-primary"></i>
+                                    نوع الطلب *
+                                </label>
+                                <select class="form-select form-select-lg" id="requestType" required disabled>
+                                    <option value="">اختر نوع الطلب</option>
+                                    <option value="education">تعليم</option>
+                                    <option value="health">صحة</option>
+                                    <option value="living">معيشة</option>
+                                    <option value="sponsoring">كفالة</option>
+                                    <option value="emergency">طوارئ</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                                <div class="form-text">نوع المساعدة المحدد من الصفحة السابقة</div>
+                            </div>
+
+                            <!-- Basic Information Section -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-4 border-bottom pb-2">
+                                    <i class="fas fa-user ms-2"></i>
+                                    المعلومات الأساسية
+                                </h4>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label fw-semibold">الاسم الأول *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user text-primary"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="firstName" placeholder="أدخل اسمك الأول" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label fw-semibold">اسم العائلة *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-user text-primary"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="lastName" placeholder="أدخل اسم العائلة" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="idNumber" class="form-label fw-semibold">رقم الهوية *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-id-card text-primary"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="idNumber" placeholder="رقم الهوية الوطنية" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phoneNumber" class="form-label fw-semibold">رقم الهاتف *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-phone text-primary"></i>
+                                            </span>
+                                            <input type="tel" class="form-control" id="phoneNumber" placeholder="رقم الهاتف" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label fw-semibold">البريد الإلكتروني *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-envelope text-primary"></i>
+                                            </span>
+                                            <input type="email" class="form-control" id="email" placeholder="البريد الإلكتروني" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="city" class="form-label fw-semibold">المدينة *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-map-marker-alt text-primary"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="city" placeholder="المدينة" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Form Section -->
+                            <div id="dynamicFormSection" class="mb-5 d-none">
+                                <h4 class="text-primary mb-4 border-bottom pb-2" id="dynamicFormTitle">
+                                    <i class="fas fa-clipboard-list ms-2"></i>
+                                    تفاصيل الطلب
+                                </h4>
+                                <div id="dynamicFormContent">
+                                    <!-- Dynamic content will be inserted here -->
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="mb-5">
+                                <h4 class="text-primary mb-4 border-bottom pb-2">
+                                    <i class="fas fa-info-circle ms-2"></i>
+                                    معلومات إضافية
+                                </h4>
+                                
+                                <div class="mb-3">
+                                    <label for="additionalNotes" class="form-label fw-semibold">ملاحظات إضافية</label>
+                                    <textarea class="form-control" id="additionalNotes" rows="4" placeholder="أي معلومات إضافية تود إضافتها..."></textarea>
+                                    <div class="form-text">اختياري - يمكنك إضافة أي تفاصيل أخرى تساعد في فهم طلبك</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="urgencyLevel" class="form-label fw-semibold">مستوى الإلحاح *</label>
+                                    <select class="form-select" id="urgencyLevel" required>
+                                        <option value="">اختر مستوى الإلحاح</option>
+                                        <option value="low">عادي</option>
+                                        <option value="medium">مهم</option>
+                                        <option value="high">عاجل</option>
+                                        <option value="critical">طارئ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                    <label class="form-check-label fw-semibold" for="agreeTerms">
+                                        أوافق على 
+                                        <a href="#" class="text-primary text-decoration-none">شروط الخدمة</a>
+                                        و
+                                        <a href="#" class="text-primary text-decoration-none">سياسة الخصوصية</a>
+                                        *
+                                    </label>
+                                </div>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" id="agreeDataProcessing" required>
+                                    <label class="form-check-label fw-semibold" for="agreeDataProcessing">
+                                        أوافق على معالجة بياناتي الشخصية لأغراض تقييم الطلب *
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg px-5 py-3">
+                                    <i class="fas fa-paper-plane ms-2"></i>
+                                    تقديم طلب التبرع
+                                </button>
+                                <div class="mt-3">
+                                    <small class="text-muted">
+                                        <i class="fas fa-shield-alt ms-1"></i>
+                                        جميع المعلومات محمية ومشفرة
+                                    </small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-check-circle ms-2"></i>
+                        تم تقديم الطلب بنجاح!
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h4 class="text-success mb-3">شكراً لك!</h4>
+                    <p id="successMessage" class="mb-4"></p>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle ms-2"></i>
+                        سيتم مراجعة طلبك خلال 2-3 أيام عمل والتواصل معك قريباً
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        <i class="fas fa-home ms-2"></i>
+                        العودة للرئيسية
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer-container">
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script to load navbar and pre-select donation type -->
+    <script>
+        // Load navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+            // Load Footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+
+        // Pre-select donation type from sessionStorage
+        window.addEventListener('DOMContentLoaded', function() {
+            const selectedType = sessionStorage.getItem('selectedDonationType');
+            if (selectedType) {
+                const requestTypeSelect = document.getElementById('requestType');
+                requestTypeSelect.value = selectedType;
+                // Trigger change event to load dynamic form
+                const event = new Event('change');
+                requestTypeSelect.dispatchEvent(event);
+            } else {
+                // If no type selected, redirect to selection page
+                window.location.href = 'donation-type-selection.html';
+            }
+        });
+    </script>
+    
+    <!-- Custom JS -->
+    <script src="donation-request.js"></script>
+</body>
+</html>

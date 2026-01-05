@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+   <!--bootstrap-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--fontawsom-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/lucide/dist/lucide.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" href="admin.css" />
+    </head>
+
+    <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #007bff;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+   
+    .gradient-text {
+      background: linear-gradient(to right, #1e293b, #9333ea, #1e293b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  
+    
+    .export-btn {
+      transition: transform 0.2s ease-in-out;
+    }
+    .export-btn:hover {
+      transform: scale(1.05);
+    }
+
+
+    .card-premium {
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .card-premium:hover {
+      transform: scale(1.05);
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .gradient-purple { background: linear-gradient(45deg, #8b5cf6, #ec4899); }
+    .gradient-blue { background: linear-gradient(45deg, #3b82f6, #06b6d4); }
+    .gradient-green { background: linear-gradient(45deg, #10b981, #14b8a6); }
+    .gradient-orange { background: linear-gradient(45deg, #f97316, #ef4444); }
+
+    .text-gradient-purple { background: linear-gradient(90deg,#8b5cf6,#ec4899);
+       -webkit-background-clip: text; color: transparent; font-weight: bold; }
+    .text-gradient-blue { background: linear-gradient(90deg,#3b82f6,hsl(189, 94%, 43%)); -webkit-background-clip: text; color: transparent; font-weight: bold; }
+    .text-gradient-green { background: linear-gradient(90deg,#10b981,#14b8a6);
+       -webkit-background-clip: text; color: transparent; font-weight: bold; }
+    .text-gradient-orange { background: linear-gradient(90deg,#f97316,#ef4444);
+       -webkit-background-clip: text; color: transparent; font-weight: bold; }
+
+    .badge-trend {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+    .bg-trend-up { background-color: #d1fae5; color: #059669; }
+
+    .card-gradient {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+      color: #1e293b;
+      background-color: white;
+    }
+    .card-body {
+      position: relative;
+      z-index: 1;
+    }
+    
+     #exportReport {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      border: none;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 20px;
+    }
+
+    #exportReport:hover {
+      opacity: 0.9;
+    }
+
+  </style>
+    <body>
+     
+       <!-- Sidebar -->
+        
+      <div class="sidebar">
+        <div class="title">
+          <h1><span>لوحة التحكم</span></h1>
+        </div>
+       <ul>
+         <li>
+            <a href="admin.html" class="active">
+            <i class="fa-solid fa-house"></i>
+            <span>الصفحة الرئيسية</span>
+            </a>
+          </li>
+          <li>
+            <a href="orderManagement.html">
+            <i class="fa-solid fa-list-check"></i>
+            <span>إدارة الطلبات</span>
+          </a>
+          </li>
+          <li>
+            <a href="donations.html">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>التبرعات</span>
+            </a>
+          </li>
+          <li>
+            <a href="users.html">
+            <i class="fa-solid fa-users"></i>
+            <span>المستخدمون</span>
+            </a>
+          </li>
+
+          
+          <li>
+            <a href="reports.html">
+            <i class="fas fa-chart-line"></i>
+            <span>التقارير</span>
+            </a>
+          </li>
+         
+
+          
+          <li>
+            <a href="settings.html">
+            <i class="fas fa-cog"></i>
+            <span>الإعدادات</span>
+            </a>
+          </li>
+          <li>
+            <a href="HomePage.html">
+           <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>زيارة الموقع</span>
+            </a>
+          </li>
+          
+         <li class="log-out " id="logoutBtn">
+            <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>تسجيل الخروج</span>
+            </a>
+          </li>
+        </div>
+      </div>
+       <!--end Sidebar--> 
+
+       <div class="page">
+
+        <!-- Header -->
+      <div class="header">
+        <div class="header-info">
+        <div>
+           مرحبا بك، <span id="header-welcome-name"></span>! 
+        </div>
+        <div class="header-actions">
+        <!-- أيقونة الجرس -->
+    <div class="notification-dropdown">
+          <div class="notification" id="notification">
+            <i class="fa-solid fa-bell" id="storyBell"></i>
+               <span class="badge" id="storyCount">0</span>
+                 </div>
+                 
+     <ul class="menu" id="pendingList">
+      
+      <li> لا توجد إشعارات</li>
+      
+     </ul>
+     
+</div>
+         
+           <div class="user-profile">
+            <div class="profile-img">
+              <img src="" alt="profile-img"  id="header-profile-pic">
+            </div>
+            <div class="user-info">
+              <div class="user-name"  id="header-user-name"> </div>
+              <div class="user-role">مدير النظام</div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+       <!--end header-->
+
+       <div class="content">
+        <div class="page-title">
+          <div class="text">التقارير</div>
+         </div>
+
+           <div class="card p-4 mb-3 shadow rounded-4 border-0">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-start align-items-lg-center">
+      
+      <!-- العنوان والوصف -->
+      <div>
+        <h2 class="fw-bold gradient-text">تقارير التبرعات</h2>
+        <p class="text-muted mt-2">نظرة شاملة وتحليلية متقدمة لأداء منصة التبرعات</p>
+        
+      </div>
+
+      <!-- عناصر التحكم -->
+      <div class="d-flex gap-3 mt-3 mt-lg-0">
+        <!-- القائمة المنسدلة -->
+        <select id="reportFilter" class="form-select shadow-sm" style="width: 180px;">
+          <option value="12" selected>آخر 12 شهر</option>
+          <option value="6">آخر 6 أشهر</option>
+          <option value="3" >آخر 3 أشهر</option>
+          <option value="1">آخر شهر</option>
+        </select>
+
+        <!-- زر التصدير -->
+        <button class="btn  d-flex align-items-center gap-2 export-btn shadow" id="exportReport">
+          <i class="fa-solid fa-download"></i>
+          تصدير التقرير
+        </button>
+      </div>
+</div>
+           </div>
+    
+            <div class="row g-3">
+      <!-- إجمالي التبرعات -->
+      <div class=" col-md-6 col-lg-3">
+        <div class="card-premium p-4 bg-white">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-muted">إجمالي التبرعات</h5>
+            <div class="card-icon gradient-purple">
+              <i class="fa-solid fa-coins"></i>
+            </div>
+          </div>
+          <div class="fs-3 text-gradient-purple" id="totalAmount">0 ₪</div>
+          <div class="mt-2 d-flex align-items-center gap-2">
+            <span class="badge-trend bg-trend-up">+104.4%</span>
+            <small class="text-muted">من العام الماضي</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- عدد المتبرعين -->
+      <div class=" col-md-6 col-lg-3">
+        <div class="card-premium p-4 bg-white">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-muted" >عدد المتبرعين</h5>
+            <div class="card-icon gradient-blue">
+             <i class="fa-solid fa-users"></i>
+            </div>
+          </div>
+          <div class="fs-3 text-gradient-blue" id="totalDonors">0</div>
+          <div class="mt-2 d-flex align-items-center gap-2">
+            <span class="badge-trend bg-trend-up">+12.5%</span>
+            <small class="text-muted">من العام الماضي</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- متوسط التبرع -->
+      <div class=" col-md-6 col-lg-3">
+        <div class="card-premium p-4 bg-white">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-muted">متوسط التبرع</h5>
+            <div class="card-icon gradient-green">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+          </div>
+          <div class="fs-3 text-gradient-green" id="avgDonation">0 ₪</div>
+          <div class="mt-2 d-flex align-items-center gap-2">
+            <span class="badge-trend bg-trend-up">+5.2%</span>
+            <small class="text-muted">من العام الماضي</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- الحملات النشطة -->
+      <div class=" col-md-6 col-lg-3">
+        <div class="card-premium p-4 bg-white">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-muted">الحملات النشطة</h5>
+            <div class="card-icon gradient-orange">
+             <i class="fa-solid fa-bullseye"></i>
+            </div>
+          </div>
+          <div class="fs-3 text-gradient-orange" id="activeCampaigns">0</div>
+          <div class="mt-2 d-flex align-items-center gap-2">
+            <span class="badge-trend bg-trend-up"></span>
+            <small class="text-muted">حملة نشطة</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row g-3 mt-3">
+
+    <!-- بطاقة التبرعات الشهرية -->
+    <div class="col-lg-6">
+      <div class="card card-gradient p-4">
+        <div class="d-flex align-items-center mb-3">
+          <div class="card-icon gradient-purple ms-2">
+              <i class="fa-solid fa-coins"></i>
+            </div>
+          <div class="ms-3">
+            <h5 class="mb-0">التبرعات الشهرية</h5>
+            <small class="text-muted">مقارنة التبرعات على مدار السنة</small>
+          </div>
+        </div>
+        <div>
+        <canvas id="monthlyDonationsChart" height="300"></canvas>
+      </div>
+      </div>
+    </div>
+
+    <!-- بطاقة التبرعات حسب الفئة -->
+    <div class=" col-lg-6">
+      <div class="card card-gradient p-4">
+        <div class="d-flex align-items-center mb-3">
+         <div class="card-icon gradient-green ms-2">
+              <i class="fa-regular fa-heart"></i>
+            </div>
+          <div class="ms-3">
+            <h5 class="mb-0">التبرعات حسب الفئة</h5>
+            <small class="text-muted">توزيع التبرعات على الفئات المختلفة</small>
+          </div>
+        </div>
+        <div class="">
+        <canvas id="categoryDonationsChart" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+    <!-- بطاقة الرسم البياني -->
+    <div class=" mt-3 mb-5">
+      <div class="card card-gradient p-4 " style="height: 400px;">
+        <div class="d-flex align-items-center mb-3">
+          <div class="card-icon gradient-blue ms-2">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div>
+            <h5 class="mb-0">نمو عدد المتبرعين</h5>
+            <small class="text-muted">تطور عدد المتبرعين شهرياً</small>
+          </div>
+        </div>
+        <div class="">
+        <canvas id="donorsChart" height="300"  style="height: 250px;"></canvas>
+      </div>
+      </div>
+    </div>
+</div>
+   </div>
+  
+   
+   <!-- Preview Modal -->
+<!-- Modal -->
+<div id="storyPreviewModal" class="story-preview-modal">
+    <div class="story-preview-box">
+
+        <span class="story-close-btn" id="closePreviewModal">&times;</span>
+
+        <h2 class="story-preview-title">معاينة القصة</h2>
+
+        <div class="story-info">
+            <p><strong>العنوان:</strong> <span id="previewTitle"></span></p>
+            <p><strong>النوع:</strong> <span id="previewType"></span></p>
+            <p><strong>التصنيف:</strong> <span id="previewCategory"></span></p>
+            <p><strong>الوقت:</strong> <span id="previewTime"></span></p>
+            <p><strong>المحتوى:</strong></p>
+            <p id="previewContent" style="white-space: pre-wrap;"></p>
+
+            <p><strong>الكاتب:</strong> <span id="previewAuthor"></span></p>
+            <p><strong>تاريخ الإنشاء:</strong> <span id="previewCreatedAt"></span></p>
+            
+            <p><strong>المبلغ المتبرع:</strong> <span id="previewDonations"></span></p>
+            <p><strong>العملة:</strong> <span id="previewCurrency"></span></p>
+            <p><strong>عدد المشاهدات:</strong> <span id="previewViews"></span></p>
+
+            <img id="previewImage" style="width: 100%; margin-top: 15px; border-radius: 10px; display:none;" />
+        </div>
+
+    </div>
+</div>
+
+        
+<script>
+
+  
+// تصدير التقرير
+document.getElementById('exportReport').addEventListener('click', async () => {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const reportElement = document.querySelector(".content");
+  const pageWidth = 210;
+  const pageHeight = 297;
+
+  // صورة عالية الدقة
+  const canvas = await html2canvas(reportElement, { scale: 3, useCORS: true });
+  const imgData = canvas.toDataURL('image/png');
+
+  // تعديل الطول ليحافظ على نسبة العرض للصفحة
+  const imgProps = pdf.getImageProperties(imgData);
+  const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+
+  pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pdfHeight);
+  pdf.save(`GiveHope_Report_${new Date().getFullYear()}.pdf`);
+});
+
+
+
+document.addEventListener("DOMContentLoaded", async function() {
+async function fetchReport(period = "12") {
+  try {
+    const res = await fetch(`http://localhost:5000/api/admin/reports?period=${period}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error fetching report:", err);
+    return null;
+  }
+}
+
+function updateCards(report) {
+  document.getElementById("totalAmount").textContent = report.totalAmount.value.toLocaleString() + " ₪";
+  document.getElementById("totalDonors").textContent = report.totalDonors.value;
+  document.getElementById("avgDonation").textContent = report.avgDonation.value.toLocaleString() + " ₪";
+  document.getElementById("activeCampaigns").textContent = report.activeCampaigns.value;
+
+  // نسبة التغير
+  document.querySelector("#totalAmount + div .badge-trend").textContent = 
+    (report.totalAmount.change >= 0 ? "+" : "") + report.totalAmount.change.toFixed(1) + "%";
+  document.querySelector("#totalDonors + div .badge-trend").textContent = 
+    (report.totalDonors.change >= 0 ? "+" : "") + report.totalDonors.change.toFixed(1) + "%";
+  document.querySelector("#avgDonation + div .badge-trend").textContent = 
+    (report.avgDonation.change >= 0 ? "+" : "") + report.avgDonation.change.toFixed(1) + "%";
+}
+
+function updateMonthlyDonationsChart(monthlyData) {
+  const ctx = document.getElementById('monthlyDonationsChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: monthlyData.map(m => m.month ),
+      datasets: [{
+        label: 'المبلغ',
+        data: monthlyData.map(m => m.amount),
+        backgroundColor: 'rgba(139,92,246,0.7)',
+        borderRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.parsed.y + ' ₪';
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return value + ' ₪';
+            }
+          }
+        }
+      }
+    }
+
+  });
+}
+
+function updateDonorsChart(monthlyDonors) {
+  const ctx = document.getElementById('donorsChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: monthlyDonors.map(m => m.month),
+      datasets: [{
+        label: 'عدد المتبرعين',
+        data: monthlyDonors.map(m => m.count),
+        backgroundColor: 'rgba(6,182,212,0.3)',
+        borderColor: '#06b6d4',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#06b6d4',
+        pointBorderColor: '#fff',
+        pointRadius: 5
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+}
+
+function updateCategoryChart(categories) {
+  const ctx = document.getElementById('categoryDonationsChart').getContext('2d');
+  const labels = Object.keys(categories);
+  const data = Object.values(categories);
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: { labels, datasets: [{ data, backgroundColor: ['#8b5cf6','#06b6d4','#10b981','#f59e0b','#f87171'] }] },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const label = context.label || '';
+              const value = context.parsed || 0;
+              return `${label}: ${value} ₪`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+async function loadReport(periodValue = "12") {
+  const report = await fetchReport(periodValue);
+  if (!report) return;
+
+  updateCards(report);
+  updateMonthlyDonationsChart(report.monthlyData);
+  updateDonorsChart(report.monthlyDonors);
+  updateCategoryChart(report.categories);
+}
+document.querySelector("#reportFilter").addEventListener("change", (e) => {
+  let periodValue = e.target.value || "12";
+  loadReport(periodValue);
+});
+
+// تحميل التقرير عند فتح الصفحة
+loadReport();
+}); 
+
+ </script>
+
+
+          <script src="admin.js"></script>
+         
+                <script src="headerAdmin.js"></script>
+
+      
+    </body>
+ </html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل المشروع</title>
+   <!--bootstrap-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--fontawsom-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="project-details.css" />
+  </head>
+<body class="bg-light">
+
+   <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+<section class="page-header">
+            <h1>تفاصيل المشروع</h1>
+            <p>تابع تفاصيل المشروع وخطوات تنفيذه بدقة وشفافية.</p>
+        </section>
+<div class="content  d-flex justify-content-center align-items-center  " >
+ 
+  <div class=" container p-4">
+    <a href="projects.html" class="bttn"><i class="fa-solid fa-arrow-right"></i>الرجوع إلى صفحة المشاريع</a>
+
+    <div class="row">
+      <div class="col-md-4">
+       
+     <div class="text-center mb-3 w-100 mt-2 border rounded shadow " >
+    <img id="mainImage"
+     src="educational.webp" class="w-100 rounded  shadow " style="height:280px;" alt="صورة المنتج">
+  </div>
+
+  
+  <div class="thumbs  " id="subImagesContainer">
+    <img src="" width="100" class="active" >
+    <img src="" width="100" >
+    <img src="" width="100">
+    <img src="" width="100" >
+    <img src="" width="100" >
+    <img src="" width="100" >
+  </div>  
+  <div class="card card-number py-2 px-3 mt-4 border-0 shadow">
+ <div class="progress mt-2" style="height: 13px; border-radius: 5px;">
+      <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">40%</div>
+    </div>
+  <div class="row py-3 g-2"> 
+  
+    <!-- المبلغ المطلوب -->
+    <div class="col-sm-6" >
+      <div class="p-1 px-2 py-3 border rounded-4 bg-light text-center bg-white shadow-sm">
+        <div class="text-primary">المبلغ المطلوب</div>
+        <div class="fw-bold" id="goalAmount"></div>
+      </div>
+    </div>
+
+    <!-- المبلغ المجموع -->
+    
+    <div class="col-sm-6" >
+      <div class="p-1 px-2 py-3 border rounded-4 bg-light text-center bg-white shadow-sm">
+        <div class="text-primary">المبلغ المجموع</div>
+        <div class="fw-bold" id="collectedAmount"></div>
+      </div>
+    </div>
+
+    <!-- المبلغ المتبقي -->
+    <div class="col-sm-6" >
+      <div class="p-1 px-2 py-3 border rounded-4 bg-light bg-white text-center shadow-sm">
+        <div class=" text-primary">المبلغ المتبقي</div>
+        <div class="fw-bold" id="remainingAmount"></div>
+      </div>
+    </div>
+
+    <!-- عدد المتبرعين -->
+    <div class="col-sm-6" >
+      <div class="p-1 px-2 py-3 border rounded-4 bg-light text-center bg-white shadow-sm">
+        <div class=" text-primary">عدد المتبرعين</div>
+        <div class="fw-bold" id="donorsCount"></div>
+      </div>
+    </div>
+
+    <!-- تاريخ النشر -->
+    <div class="col-sm-6" >
+      <div class="p-1 px-2 py-3 border rounded-4 bg-light text-center bg-white shadow-sm">
+        <div class=" text-primary">تاريخ النشر</div>
+        <div class="fw-bold" id="createdAt"></div>
+      </div>
+    </div>
+
+    <!-- آخر موعد للتبرع -->
+    <div class="col-sm-6" >
+      <div class="p-1 px-2 py-3 border rounded-4 bg-light text-center bg-white shadow-sm">
+        <div class=" text-primary">آخر موعد للتبرع</div>
+        <div class="fw-bold" id="endDate"></div>
+      </div>
+    </div>
+
+
+     <!--  زر التبرع والمشاركة-->
+    <div class="text-center mt-3 row">
+      <div class="col-sm-9">
+      <a href="DonateNow.html" class=" btn btn-primary text-white w-100"><i class="fas fa-hand-holding-heart"></i>
+    تبرع الآن
+      </a>
+      
+      </div>
+      <div class="col-sm-3">
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#shareModal" title="مشاركة">
+       <i class="fa-solid fa-share"></i></button> 
+</div>
+    </div>
+    </div>
+
+  </div>
+  
+      </div>
+
+
+      <div class="col-md-8 pt-2">
+       <div class="card border-0 shadow ">
+  <!-- Header -->
+  <div class="project-header bg-primary w-100">
+    تفاصيل المشروع
+  </div>
+<div class="p-4 pb-5">
+  <!-- Tabs -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button" role="tab">الوصف</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="report-tab" data-bs-toggle="tab" data-bs-target="#report" type="button" role="tab">التقارير</button>
+    </li>
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content" id="myTabContent">
+
+    <!-- وصف المشروع -->
+    <div class="tab-pane fade show active pt-3" id="desc" role="tabpanel">
+      <div class="card  card-color-desc">
+        <div class="card-body  ">
+          <h5 class="card-title ">وصف المشروع - بناء مدرسة</h5>
+               <p class="card-text" id="details">في العديد من المناطق المحتاجة، يواجه الأطفال صعوبة في الحصول على حقهم الأساسي في التعليم بسبب غياب البنية التحتية المناسبة. لذلك يهدف هذا المشروع إلى بناء مدرسة متكاملة تضم صفوف دراسية، مكتبة، ومختبرات حاسوب لتوفير بيئة تعليمية آمنة ومحفّزة.</p>
+
+         
+        </div>
+      </div>
+<div class="border-top my-4"></div>
+      <div class="card  card-color-aims">
+        <div class="card-body ">
+          <h5 class="card-title text-success"><i class="fa-solid fa-bullseye "></i>أهداف المشروع</h5>
+          <p class="card-text" id="goals">
+إنشاء مبنى مدرسي مجهز بـ 12 صف دراسي.
+توفير مقاعد وأدوات تعليمية حديثة لـ 400 طالب وطالبة.
+بناء مكتبة مدرسية تحتوي على كتب ومراجع تعليمية.
+تجهيز مختبر حاسوب لدعم التعليم الرقمي.</p>
+         
+        </div>
+      </div>
+    </div>
+
+    <!-- التقارير -->
+    <div class="tab-pane fade" id="report" role="tabpanel">
+ 
+         <h5 class="mb-3 pt-3">التقارير</h5>
+  <p class="text-muted">هنا تجد أحدث التقارير حول تقدم المشروع.</p>
+
+  <!-- قائمة التقارير -->
+  <ul id="reportsList" class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>📄تقرير أولي – <a href="#" download="">تحميل PDF</a></span>
+      <div class=" admin-actions d-none" >
+        <button class="btn btn-warning btn-sm edit-btn mx-1 text-white"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>
+        <button class="btn btn-danger btn-sm delete-btn text-white"><i class="fa-solid fa-trash"></i> حذف</button>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <span>📄تقرير نصف سنوي – <a href="#" >تحميل PDF</a></span>
+      <div class=" admin-actions d-none">
+        <button class="btn btn-warning btn-sm edit-btn mx-1 text-white"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>
+        <button class="btn btn-danger btn-sm delete-btn text-white"><i class="fa-solid fa-trash"></i> حذف</button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- أزرار خاصة بالـ Admin -->
+  <div id="adminControls" class="d-none ">
+    <h5>إدارة التقارير</h5>
+    <button class="btn btn-primary btn-sm mb-2 mt-1 py-1" data-bs-toggle="modal" data-bs-target="#addReportModal">
+  <i class="fa-solid fa-plus"></i> إضافة تقرير جديد
+</button>
+  </div>
+  <!-- رسالة عند عدم وجود تقارير -->
+<div id="noReportsMsg" class="alert alert-info text-center">
+  <p class="text-primary fw-bold">التقارير قريباً</p>
+  <p>سيتم إضافة التقارير والتحديثات عن المشروع هنا</p>
+</div>
+      </div>
+    </div>
+</div>
+  </div>
+  </div>
+  </div>
+
+    
+      </div>
+      </div>
+
+       
+      
+  
+    
+    
+    
+   
+   
+    
+  
+  
+ <!-- Modal لرفع تقرير جديد -->
+<div class="modal fade" id="addReportModal" tabindex="-1" aria-labelledby="addReportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+        <div>
+        <h5 class="modal-title" id="addReportModalLabel">إضافة تقرير جديد</h5>
+       </div>
+       <div> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      </div>
+      <div class="modal-body">
+        <form id="reportForm">
+          <div class="mb-3">
+            <label class="form-label">عنوان التقرير</label>
+            <input type="text" class="form-control" id="reportTitle" placeholder="مثال: تقرير نهائي">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">ملف التقرير (PDF)</label>
+            <input type="file" class="form-control" id="reportFile" accept="application/pdf">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-primary py-1" id="saveReportBtn">حفظ التقرير</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal لتعديل تقرير -->
+<div class="modal fade" id="editReportModal" tabindex="-1" aria-labelledby="editReportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+        <div>
+        <h5 class="modal-title" id="editReportModalLabel">تعديل التقرير</h5>
+       </div>
+       <div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      </div>
+      <div class="modal-body">
+        <form id="editReportForm">
+          <div class="mb-3">
+            <label class="form-label">عنوان التقرير الجديد</label>
+            <input type="text" class="form-control" id="editReportTitle">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-warning text-white" id="updateReportBtn">حفظ التعديلات</button>
+      </div>
+    </div>
+  </div>
+</div>     
+  
+
+<!---->
+
+<!-- نافذة المشاركة -->
+<div class="modal fade" id="shareModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header d-flex justify-content-between">
+        <div>
+        <h5 class="modal-title">مشاركة المشروع</h5>
+        </div>
+        <div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      </div>
+      <div class="modal-body">
+        <p> ساهم معنا بنشر الخير وشارك المشروع مع أصدقائك:</p>
+
+        <!-- نسخ الرابط -->
+        <button onclick="copyLink()" id="copy-link" class="btn btn-sm btn-outline-secondary mb-2 w-100">
+         <i class="fa-solid fa-copy"></i> نسخ الرابط
+        </button>
+
+        <!-- واتساب -->
+        <a href="https://wa.me/?text=ادعم هذا المشروع: https://example.com/project/123"
+           target="_blank" class="btn btn-sm btn-success mb-2  ">
+         <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <!-- فيسبوك -->
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://example.com/project/123"
+           target="_blank" class="btn btn-sm btn-primary mb-2">
+          <i class="fab fa-facebook"></i>
+        </a>
+
+        <!-- تويتر -->
+        <a href="https://twitter.com/intent/tweet?url=https://example.com/project/123&text=ادعم هذا المشروع"
+           target="_blank" class="btn btn-sm btn-dark mb-2 ">
+        <i class="fa-brands fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--footer-->
+ <div id="footer-placeholder"></div>
+  
+ <!-- navbar -->
+  <script>
+     function loadHTML(id, file) {
+        fetch(file)
+          .then((res) => res.text())
+          .then((html) => (document.getElementById(id).innerHTML = html))
+          .catch((err) => console.error("خطأ في تحميل", file, err));
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        loadHTML("navbar-placeholder", "navbar.html");
+        loadHTML("footer-placeholder", "footer.html");
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const check = setInterval(() => {
+          const toggle = document.getElementById("menuToggle");
+          const nav = document.getElementById("navLinks");
+          if (toggle && nav) {
+            clearInterval(check);
+            toggle.onclick = (e) => {
+              e.stopPropagation();
+              nav.classList.toggle("active");
+            };
+            document.onclick = (e) => {
+              if (!e.target.closest(".navbar")) {
+                nav.classList.remove("active");
+                document
+                  .querySelectorAll(".dropdown")
+                  .forEach((d) => d.classList.remove("active"));
+              }
+            };
+            nav.onclick = (e) => e.stopPropagation();
+            document.querySelectorAll(".dropdownToggle").forEach((btn) => {
+              btn.onclick = (e) => {
+                if (window.innerWidth <= 992) {
+                  e.preventDefault();
+                  const dropdown = btn.parentElement;
+                  dropdown.classList.toggle("active");
+                  document.querySelectorAll(".dropdown").forEach((d) => {
+                    if (d !== dropdown) d.classList.remove("active");
+                  });
+                }
+              };
+            });
+            window.onresize = () => {
+              if (window.innerWidth > 992) {
+                nav.classList.remove("active");
+                document
+                  .querySelectorAll(".dropdown")
+                  .forEach((d) => d.classList.remove("active"));
+              }
+            };
+          }
+        }, 100);
+      });
+    </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="project-details.js"></script>
+
+</body>
+</html>

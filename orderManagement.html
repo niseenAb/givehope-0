@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    
+     <!--bootstrap-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--fontawsom-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+ <!--css-->
+    <link rel="stylesheet" href="admin.css" />
+
+    <style>
+      table{
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+  
+ 
+    .data-table th {
+      background-color: #34495e;
+      color: white;
+    }
+
+   .card {
+  background-color: white;
+  border-radius: var(--radius);
+ 
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+.card:hover {
+ box-shadow: var(--shadow);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:9px ;
+  height: 100%;
+  opacity: 0.8;
+  transition: var(--transition);
+     
+}
+.card1::before{
+   background:  #00bbd4f5;
+  
+}
+.card1 {
+   color:  #00bbd4f5;
+  
+}
+.card2::before{
+    background-color:  #ff9900f3;
+  
+}
+.card2 {
+  color:  #ff9900f3;
+  
+}
+.card3::before{
+    background-color: #8bc34af9;
+  
+}
+.card3 {
+  color: #8bc34af9;
+  
+}
+.card4::before{
+    background-color:  #dc2222;
+  
+}
+.card4 {
+  color:  #dc2222;
+
+}
+
+.card-body {
+  border:1px solid;
+}
+
+.btn-processing {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-processing:hover {
+  background-color: #0056b3;
+}
+
+.status-box {
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+    </style>
+    </head>
+    <body>
+     
+     
+       <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <div class="title">
+          <h1><span>لوحة التحكم</span></h1>
+        </div>
+       <ul>
+         <li>
+            <a href="admin.html">
+            <i class="fa-solid fa-house"></i>
+            <span>الصفحة الرئيسية</span>
+            </a>
+          </li>
+          <li>
+            <a href="orderManagement.html">
+            <i class="fa-solid fa-list-check"></i>
+            <span>إدارة الطلبات</span>
+          </a>
+          </li>
+          <li>
+            <a href="donations.html">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>التبرعات</span>
+            </a>
+          </li>
+          <li>
+            <a href="users.html">
+            <i class="fa-solid fa-users"></i>
+            <span>المستخدمون</span>
+            </a>
+          </li>
+
+          
+          <li>
+            <a href="reports.html">
+            <i class="fas fa-chart-line"></i>
+            <span>التقارير</span>
+            </a>
+          </li>
+         
+
+          
+          <li>
+            <a href="settings.html">
+            <i class="fas fa-cog"></i>
+            <span>الإعدادات</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="HomePage.html">
+           <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>زيارة الموقع</span>
+            </a>
+          </li>
+          
+         <li class="log-out " id="logoutBtn">
+            <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>تسجيل الخروج</span>
+            </a>
+          </li>
+        </div>
+      </div>
+       <!--end Sidebar--> 
+
+       <div class="page">
+
+        <!-- Header -->
+       <div class="header">
+        <div class="header-info">
+        <div>
+           مرحبا بك، <span id="header-welcome-name">محمد</span>! 
+        </div>
+        <div class="header-actions">
+         <!-- أيقونة الجرس -->
+    <div class="notification-dropdown">
+          <div class="notification" id="notification">
+            <i class="fa-solid fa-bell" id="storyBell"></i>
+               <span class="badge" id="storyCount">0</span>
+                 </div>
+                 
+     <ul class="menu" id="pendingList">
+      
+      <li> لا توجد إشعارات</li>
+      
+     </ul>
+     
+</div>
+         
+           <div class="user-profile">
+            <div class="profile-img">
+              <img src="" alt="profile-img"  id="header-profile-pic">
+            </div>
+            <div class="user-info">
+              <div class="user-name"  id="header-user-name">محمد احمد</div>
+              <div class="user-role">مدير النظام</div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+       <!--end header-->
+
+       <div class="content">
+        <div class="page-title">
+          <div class="text">إدارة الطلبات</div>
+         
+        </div>
+      <div class="row g-4 mb-4 ">
+    <div class="col-md-3">
+      <div class="card card1">
+        <div class="card-body">
+          <h5 class="card-title ">الطلبات الجديدة</h5>
+          <p class="fs-4 mb-0" id="count-new">0</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card2">
+        <div class="card-body ">
+          <h5 class="card-title">قيد المراجعة</h5>
+          <p class="fs-4 mb-0" id="count-processing">0</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card  card3">
+        <div class="card-body">
+          <h5 class="card-title">مقبولة</h5>
+          <p class="fs-4 mb-0" id="count-completed">0</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card card4">
+        <div class="card-body">
+          <h5 class="card-title">ملغاة/مرفوضة</h5>
+          <p class="fs-4 mb-0" id="count-rejected">0</p>
+        </div>
+      </div>
+    </div>
+        </div>
+
+        <div class="py-4 ">
+      <div class="d-flex  align-items-center flex-wrap  gap-2 mb-3 ">
+
+    <!-- البحث -->
+     <div style="min-width:40%">
+      <input type="text" class="form-control " id="searchInput" placeholder="ابحث...">
+   </div>
+    
+
+
+     <!-- الحالة -->
+      <select class="form-select" style="width: 160px;">
+       <option value="جميع الحالات">جميع الحالات</option>
+  <option value="جديد">جديد</option>
+  <option value="قيد المراجعة">قيد المراجعة</option>
+  <option value="مرفوض">مرفوض</option>
+  <option value="مكتمل">مكتمل</option>
+  <option value="مقبول">مقبول</option>
+      </select>
+     
+      <!-- من - إلى -->
+      <input type="date" class="form-control" style="width: 150px;">_
+      <input type="date" class="form-control" style="width: 150px;">
+
+      
+
+      <!-- زر تصفية -->
+      <button class="btn btn-outline-secondary" id="filterBtn">تصفية</button>
+        </div>
+      
+  
+
+  <!-- الجدول -->
+  <div class="table-responsive">
+    <table class="data-table bg-white" id="orderManagement">
+      <thead>
+        <tr>
+          <th>رقم الطلب</th>
+          <th>نوع الطلب</th>
+          <th>المستخدم</th>
+          <th> المبلغ المطلوب</th>
+          <th>التاريخ</th>
+          <th>الحالة</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+       
+      </tbody>
+    </table>
+
+    
+  
+
+  </div>
+
+<div id="pagination" class="pagination justify-content-center"></div>
+</div>
+        </div>
+        </div>
+
+
+
+<!-- Reject Modal -->
+<div class="modal fade" id="rejectModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">رفض الطلب</h5>
+      </div>
+
+      <div class="modal-body">
+        <label>سبب الرفض:</label>
+        <textarea id="rejectReason" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button class="btn btn-danger" onclick="submitRejectReason()">تأكيد الرفض</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+   
+<!-- View Details Modal -->
+<div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header d-flex justify-content-between">
+        <div>
+        <h5 class="modal-title">تفاصيل الطلب</h5></div>
+        <div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+</div>
+
+      <div class="modal-body">
+ <div class="container-fluid">
+<div class="row g-3">
+          <!-- صفوف التفاصيل -->
+          <div class="col-md-4 ">
+            <label class="fw-bold">رقم الطلب:</label>
+            <span id="detail-orderId"></span>
+          </div>
+
+          <div class="col-md-4 ">
+            <label class="fw-bold">نوع الطلب:</label>
+            <span id="detail-type"></span>
+          </div>
+        
+
+        <!-- اسم المستخدم -->
+        <div class="col-md-4 ">
+          <label class="fw-bold">اسم المستخدم:</label>
+          <span id="detail-user"></span>
+        </div>
+         <div class="col-md-4 ">
+          <label class="fw-bold">رقم الهوية:</label>
+          <span id="detail-idNumber"></span>
+        </div>
+         <div class="col-md-4 ">
+          <label class="fw-bold">رقم الهاتف:</label>
+          <span id="detail-phoneNumber"></span>
+        </div>
+         <div class="col-md-4 ">
+          <label class="fw-bold"> البريد الإلكتروني:</label>
+          <span id="detail-email"></span>
+        </div>
+
+         <div class="col-md-4 ">
+          <label class="fw-bold"> المدينة:</label>
+          <span id="detail-city"></span>
+        </div>
+
+        <div class="col-md-4">
+              <label class="fw-bold">تفاصيل إضافية:</label>
+              <span id="detail-dynamicFields" style="white-space: pre-wrap;"></span>
+            </div>
+
+              <div class="col-md-4">
+              <label class="fw-bold">الملاحظات الإضافية:</label>
+              <span id="detail-additionalNotes"></span>
+            </div>
+<div class="col-md-4">
+              <label class="fw-bold">مستوى الإلحاح:</label>
+              <span id="detail-urgencyLevel"></span>
+            </div>
+
+            
+
+            <div class="col-md-4">
+              <label class="fw-bold">الحالة:</label>
+              <span id="detail-status"></span>
+            </div>
+            <div class="col-md-4">
+              <label class="fw-bold">ملاحظات الأدمن:</label>
+              <span id="detail-adminNotes"></span>
+            </div>
+
+       
+            
+
+            <div class="col-md-4">
+              <label class="fw-bold">تاريخ الإنشاء:</label>
+              <span id="detail-createdAt"></span>
+            </div>
+
+      
+            
+        <!-- المبلغ -->
+        <div class="col-md-4 ">
+          <label class="fw-bold">المبلغ المطلوب:</label>
+          <span id="detail-amount"></span>
+        </div>
+         
+
+
+    
+ </div>
+      </div>
+
+    
+        
+<div class="col-md-12 mt-3">
+  <label class="fw-bold">المستندات المرفوعة:</label>
+  <ul id="detail-documents" class="list-group list-group-flush"></ul>
+</div>
+
+</div>
+    
+      
+      <div class="modal-footer">
+        <button id="processing-btn" class="btn-processing " onclick="openmarkUnderReview()" >قيد المعالجة</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Under Review Modal -->
+<div class="modal fade" id="underReviewModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header d-flex justify-content-between">
+        <div>
+        <h5 class="modal-title">قيد المراجعة</h5>
+        </div><div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <label>ملاحظة اختيارية:</label>
+        <textarea id="underReviewNotes" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button class="btn btn-success" onclick="markUnderReview()">تأكيد</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Preview Modal -->
+<!-- Modal -->
+<div id="storyPreviewModal" class="story-preview-modal">
+    <div class="story-preview-box">
+
+        <span class="story-close-btn" id="closePreviewModal">&times;</span>
+
+        <h2 class="story-preview-title">معاينة القصة</h2>
+
+        <div class="story-info">
+            <p><strong>العنوان:</strong> <span id="previewTitle"></span></p>
+            <p><strong>النوع:</strong> <span id="previewType"></span></p>
+            <p><strong>التصنيف:</strong> <span id="previewCategory"></span></p>
+            <p><strong>الوقت:</strong> <span id="previewTime"></span></p>
+            <p><strong>المحتوى:</strong></p>
+            <p id="previewContent" style="white-space: pre-wrap;"></p>
+
+            <p><strong>الكاتب:</strong> <span id="previewAuthor"></span></p>
+            <p><strong>تاريخ الإنشاء:</strong> <span id="previewCreatedAt"></span></p>
+            
+            <p><strong>المبلغ المتبرع:</strong> <span id="previewDonations"></span></p>
+            <p><strong>العملة:</strong> <span id="previewCurrency"></span></p>
+            <p><strong>عدد المشاهدات:</strong> <span id="previewViews"></span></p>
+
+            <img id="previewImage" style="width: 100%; margin-top: 15px; border-radius: 10px; display:none;" />
+        </div>
+
+    </div>
+</div>
+
+ 
+<!-- Approve Modal -->
+<div class="modal fade" id="approveModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+       <div> <h5 class="modal-title">وصف مختصر للكفالة</h5></div>
+        <div><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      </div>
+      <div class="modal-body">
+        <textarea id="sponsorshipDescription" class="form-control" rows="4" placeholder="أدخل وصف مختصر للكفالة"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" onclick="approveRequest(approvedRequestId)">حفظ واعتماد</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+
+
+  //البحث
+const searchInput = document.getElementById("searchInput");
+   
+    const table = document.getElementById("orderManagement").getElementsByTagName("tbody")[0];
+
+    function filterTable() {
+      const searchText = searchInput.value.toLowerCase();
+     
+
+      for (let row of table.rows) {
+        const name = row.cells[1].textContent.toLowerCase();
+        const project = row.cells[2].textContent.toLowerCase();
+
+        const matchesSearch = name.includes(searchText) || project.includes(searchText);
+
+        if (matchesSearch ) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      }
+    }
+
+    searchInput.addEventListener("keyup", filterTable);
+  
+ //
+ 
+   const statusSelect = document.querySelector(".form-select");
+  const fromDateInput = document.querySelectorAll("input[type='date']")[0];
+  const toDateInput = document.querySelectorAll("input[type='date']")[1];
+ const filterBtn = document.getElementById("filterBtn");
+
+ //فلترة حسب حالة الطلب
+  statusSelect.addEventListener("change", function () {
+    const selectedStatus = statusSelect.value;
+    const rowTable = document.querySelectorAll("#orderManagement tbody tr");
+
+    rowTable.forEach((row) => {
+      const status = row.querySelector("td:nth-child(6)").innerText.trim();
+      
+      if (selectedStatus === "جميع الحالات" || status === selectedStatus) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+  });
+
+ // فلترة التاريخ عند الضغط على زر "تصفية"
+  filterBtn.addEventListener("click", function () {
+    const fromDate = fromDateInput.value;
+    const toDate = toDateInput.value;
+        const rowTable = document.querySelectorAll("#orderManagement tbody tr");
+
+    rowTable.forEach((row) => {
+      const dateText = row.querySelector("td:nth-child(5)").innerText.trim();
+      const rowDate = new Date(dateText);
+
+      let show = true;
+
+      if (fromDate && rowDate < new Date(fromDate)) show = false;
+      if (toDate && rowDate > new Date(toDate)) show = false;
+
+     
+    
+      row.style.display = show ? "" : "none";
+    });
+  });
+
+//تجزئة الجدول
+ 
+function initPagination() {
+ const rowsPerPage = 10;
+    const mytable = document.getElementById("orderManagement");
+  const tbody = mytable.querySelector("tbody");
+  const rows = tbody.getElementsByTagName("tr");
+  const pagination = document.getElementById("pagination");
+
+  let currentPage = 1;
+
+  function displayRows(page) {
+    let start = (page - 1) * rowsPerPage;
+    let end = start + rowsPerPage;
+
+    for (let i = 0; i < rows.length; i++) {
+      rows[i].style.display = (i >= start && i < end) ? "" : "none";
+    }
+  }
+
+  function setupPagination() {
+    pagination.innerHTML = "";
+    let pageCount = Math.ceil(rows.length / rowsPerPage);
+
+    // زر السابق
+    let prev = document.createElement("button");
+    prev.innerHTML = "⟨";
+    prev.disabled = currentPage === 1;
+    prev.addEventListener("click", function () {
+      if (currentPage > 1) {
+        currentPage--;
+        displayRows(currentPage);
+        setupPagination();
+      }
+    });
+    pagination.appendChild(prev);
+
+    // الأزرار
+    for (let i = 1; i <= pageCount; i++) {
+      let btn = document.createElement("button");
+      btn.innerText = i;
+
+      if (i === currentPage) {
+        btn.classList.add("active");
+      }
+
+      btn.addEventListener("click", function () {
+        currentPage = i;
+        displayRows(currentPage);
+        setupPagination();
+      });
+
+      pagination.appendChild(btn);
+    }
+
+    // زر التالي
+    let next = document.createElement("button");
+    next.innerHTML = "⟩";
+    next.disabled = currentPage === pageCount;
+    next.addEventListener("click", function () {
+      if (currentPage < pageCount) {
+        currentPage++;
+        displayRows(currentPage);
+        setupPagination();
+      }
+    });
+    pagination.appendChild(next);
+  }
+
+  displayRows(currentPage);
+  setupPagination();
+ 
+}
+
+
+
+ 
+ 
+
+  document.addEventListener('DOMContentLoaded', () => {
+  fetchRequestStats();
+  fetchAllRequests() ;
+});
+
+
+async function fetchRequestStats() {
+  try {
+    const res = await fetch('http://localhost:5000/api/admin/requests/stat', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`,
+      },
+    });
+    const data = await res.json();
+
+    if (!data.success) return;
+
+    document.getElementById('count-new').textContent =
+      data.stats.pending || 0;
+
+    document.getElementById('count-processing').textContent =
+      data.stats.under_review || 0;
+
+    document.getElementById('count-completed').textContent =
+      data.stats.completed || 0;
+
+    document.getElementById('count-rejected').textContent =
+      data.stats.rejected || 0;
+
+  } catch (error) {
+    console.error('خطأ أثناء جلب إحصائيات الطلبات:', error);
+  }
+}
+const statusMap = {
+  pending: 'جديد',
+  under_review: 'قيد المراجعة',
+  approved: 'مقبول',
+  rejected: 'مرفوض',
+  completed: 'مكتمل'
+};
+const requestTypeMap = {
+  education: "تعليمية",
+  health: "صحية",
+  living: "معيشية",
+  sponsoring: "كفالة",
+  emergency: "طوارئ",
+  other: "أخرى"
+};
+// دالة لتحديد لون الحالة
+function getStatusClass(status) {
+  switch(status) {
+    case 'pending': return 'bg-info';
+    case 'under_review': return 'bg-warning';
+    case 'approved': return 'bg-primary';
+    case 'completed': return 'bg-success';
+    case 'rejected': return 'bg-danger';
+    default: return 'bg-secondary';
+  }
+}
+
+function translateUrgency(level) {
+  switch(level) {
+    case 'low':return 'منخفض';
+    case 'medium':return 'متوسط';
+    case 'high':return 'مرتفع';
+    case 'critical':return 'حرج';
+    default:
+      return level; // لو القيمة غير معروفة، ترجع نفسها
+  }
+}
+
+
+
+async function fetchAllRequests() {
+  try {
+       const res = await fetch("http://localhost:5000/api/admin/requests", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`
+      },
+    });
+    const data = await res.json();
+
+    if (!data.success) return console.error("فشل في جلب الطلبات");
+
+    const requests = data.donationRequests;
+    const tbody = document.querySelector("#orderManagement tbody");
+    tbody.innerHTML = "";
+    requests.forEach(request => {
+  
+ const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${request._id}</td>
+        <td>${requestTypeMap[request.requestType] || request.requestType}</td>
+        <td>${request.firstName} ${request.lastName}</td>
+        <td>${request.totalDonations || 0}₪</td>
+        <td>${new Date(request.createdAt).toLocaleDateString()}</td>
+        <td><span class="badge py-1 px-3 text-white ${ getStatusClass(request.status)}">
+          ${statusMap[request.status]}
+        </span></td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary border-2 btn-style btn-transform"  onclick="openviewDetailsModal('${request._id}')">
+            <i class="fas fa-eye"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-success border-2 btn-style btn-transform"  onclick="openApproveModal('${request._id}', '${request.requestType}')">
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger border-2 btn-style btn-transform" data-bs-toggle="modal"
+  data-bs-target="#rejectModal"   onclick="openRejectModal('${request._id}')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(row);
+    });
+initPagination();
+   
+ } catch (err) {
+    console.error("حدث خطأ أثناء جلب الطلبات:", err);
+  }
+}
+
+
+
+let  rejectRequestId=null;
+function openRejectModal(requestId) {
+  rejectRequestId = requestId;
+ 
+}
+
+let  viewDetailsRequestId=null;
+async function openviewDetailsModal(requestId) {
+  viewDetailsRequestId = requestId;
+ try {
+    // استدعاء GET request من الباك
+    const res = await fetch(`http://localhost:5000/api/admin/requests/${requestId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`
+      },
+    });
+    const data = await res.json();
+
+    if (!data.success) {
+      alert("فشل في جلب تفاصيل الطلب");
+      return;
+    }
+
+    const request = data.request;
+
+    // 2تعبئة الحقول في المودال
+    document.getElementById('detail-orderId').textContent = request._id;
+    document.getElementById('detail-type').textContent = `${requestTypeMap[request.requestType] || request.requestType}`;
+    
+    const sponsorshipContainer = document.getElementById('sponsorshipDescriptionContainer');
+
+
+    
+    document.getElementById('detail-user').textContent = request.firstName + ' ' + request.lastName;
+    document.getElementById('detail-idNumber').textContent = request.idNumber;
+    document.getElementById('detail-phoneNumber').textContent = request.phoneNumber;
+    document.getElementById('detail-email').textContent = request.email;
+    document.getElementById('detail-city').textContent = request.city;
+   const dynamicFieldsContainer =  document.getElementById('detail-dynamicFields');
+    dynamicFieldsContainer.innerHTML = ''; // نظف القديم
+
+    
+for (const [key, value] of Object.entries(request.dynamicFields)) {
+  const p = document.createElement('p');
+  p.innerHTML = `<strong>${key}:</strong> ${value}`;
+  dynamicFieldsContainer.appendChild(p);
+}
+    document.getElementById('detail-additionalNotes').textContent = request.additionalNotes || '-';
+    document.getElementById('detail-urgencyLevel').textContent = translateUrgency(request.urgencyLevel);
+    document.getElementById('detail-status').textContent = `${statusMap[request.status]}`;
+    document.getElementById('detail-adminNotes').textContent = request.adminNotes || '-';
+    document.getElementById('detail-createdAt').textContent = new Date(request.createdAt).toLocaleString();
+    document.getElementById('detail-amount').textContent = request.totalDonations || 0;
+
+    
+    // 3تعبئة المستندات
+     const docList = document.getElementById("detail-documents");
+       docList.innerHTML = "";
+       if (request.documents && request.documents.length) {
+         request.documents.forEach(doc => {
+          const li = document.createElement("li");
+           li.className = "list-group-item";
+           li.innerHTML = `<a href="${doc.path}" target="_blank">${doc.name}</a>`;
+          docList.appendChild(li);
+         });
+      } else {
+         docList.innerHTML = "<li class='list-group-item'>لا توجد مستندات</li>";
+      }
+
+    // 4 فتح المودال
+    const modalEl = document.getElementById('viewDetailsModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+  } catch (err) {
+    console.error(err);
+    alert('حدث خطأ أثناء جلب تفاصيل الطلب');
+  }
+}
+function openmarkUnderReview(){
+  const modalEl = document.getElementById('underReviewModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+}
+
+async function markUnderReview() {
+  const notes = document.getElementById('underReviewNotes').value;
+
+  if (!viewDetailsRequestId) {
+    alert('لم يتم تحديد الطلب');
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/admin/requests/${viewDetailsRequestId}/underReview`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`
+     },
+      body: JSON.stringify({}) // ملاحظة افتراضية من الباك
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    location.reload();
+
+   
+
+  } catch (err) {
+    console.error(err);
+    alert('حدث خطأ');
+  }
+}
+
+
+
+
+let approvedRequestId = null;
+
+function openApproveModal(requestId, requestType) {
+  approvedRequestId = requestId; // حفظ معرف الطلب الحالي
+
+  if(requestTypeMap[requestType]!== 'كفالة') {
+    approveRequest(requestId); // اعتماد مباشر إذا مش كفالة
+    return;
+  }
+
+  // فتح مودال الموافقة للكفالة
+  const modalEl = document.getElementById('approveModal');
+  const modal = new bootstrap.Modal(modalEl);
+  modal.show();
+}
+
+
+async function approveRequest(requestId) {
+  try {
+    const descriptionEl = document.getElementById('sponsorshipDescription');
+    const description = descriptionEl ? descriptionEl.value : '';
+
+    // نستخدم النص الجديد فقط، نتجاهل أي ملاحظات موجودة مسبقًا
+    const newNotes = description || '-'; // إذا ما كتب شيء، نحط "-"
+
+  
+    const res = await fetch(`http://localhost:5000/api/admin/requests/${requestId}/approved`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' , 
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`
+      },
+      body: JSON.stringify({
+        additionalNotes: newNotes,
+        status: 'approved'
+      })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    location.reload();
+
+  } catch (err) {
+    console.error(err);
+    alert('حدث خطأ أثناء الاعتماد');
+  }
+}
+
+function markUnderReview() {
+  const payload = { status: 'underReview' };
+  fetch(`http://localhost:5000/api/admin/requests/${viewDetailsRequestId}/underReview`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 
+      Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`
+       },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => alert(data.message))
+  .catch(err => console.error(err));
+}
+
+
+async function submitRejectReason() {
+  const reason = document.getElementById('rejectReason').value;
+
+  if (!reason.trim()) {
+    alert('يجب إدخال سبب الرفض');
+    return;
+  }
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/admin/requests/${rejectRequestId}/rejected`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json', 
+  
+        Authorization: `Bearer ${localStorage.getItem("token")|| sessionStorage.getItem('token')}`
+      },
+      body: JSON.stringify({ adminNotes: reason })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+    location.reload();
+
+  } catch (err) {
+    console.error(err);
+    alert('حدث خطأ');
+  }
+}
+
+
+
+
+
+
+  </script>
+
+
+
+
+      <script src="admin.js"></script>
+     
+      <script src="headerAdmin.js"></script>
+    </body>
+ </html>

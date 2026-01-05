@@ -1,0 +1,6 @@
+node_modules/
+.env
+# ملفات JSON حساسة مثل Firebase Admin SDK
+backend/givehope-1241b-firebase-adminsdk-*.json
+# أي ملفات JSON حساسة أخرى في المستقبل
+backend/givehope-*.json

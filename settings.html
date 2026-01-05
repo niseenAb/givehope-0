@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <!--bootstrap-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--fontawsom-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+   <!--css-->
+    <link rel="stylesheet" href="admin.css" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+   
+    .settings-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+          margin-inline: 20px;
+    }
+   
+   
+    .profile-pic {
+      width: 15rem;
+       height: 15rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  </style>
+    </head>
+    <body>
+     
+       <!-- Sidebar -->
+        
+      <div class="sidebar">
+        <div class="title">
+          <h1><span>لوحة التحكم</span></h1>
+        </div>
+       <ul>
+         <li>
+            <a href="admin.html">
+            <i class="fa-solid fa-house"></i>
+            <span>الصفحة الرئيسية</span>
+            </a>
+          </li>
+          <li>
+            <a href="orderManagement.html">
+            <i class="fa-solid fa-list-check"></i>
+            <span>إدارة الطلبات</span>
+          </a>
+          </li>
+          <li>
+            <a href="donations.html">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <span>التبرعات</span>
+            </a>
+          </li>
+          <li>
+            <a href="users.html">
+            <i class="fa-solid fa-users"></i>
+            <span>المستخدمون</span>
+            </a>
+          </li>
+
+          
+          <li>
+            <a href="reports.html">
+            <i class="fas fa-chart-line"></i>
+            <span>التقارير</span>
+            </a>
+          </li>
+         
+
+          
+          <li>
+            <a href="settings.html">
+            <i class="fas fa-cog"></i>
+            <span>الإعدادات</span>
+            </a>
+          </li>
+          
+          <li>
+            <a href="HomePage.html">
+           <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>زيارة الموقع</span>
+            </a>
+          </li>
+          
+         <li class="log-out " id="logoutBtn">
+            <a href="#">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>تسجيل الخروج</span>
+            </a>
+          </li>
+        </div>
+      </div>
+       <!--end Sidebar--> 
+
+       <div class="page">
+
+        <!-- Header -->
+       <div class="header">
+        <div class="header-info">
+        <div>
+           مرحبا بك، <span id="header-welcome-name">محمد</span>! 
+        </div>
+        <div class="header-actions">
+          <!-- أيقونة الجرس -->
+    <div class="notification-dropdown">
+          <div class="notification" id="notification">
+            <i class="fa-solid fa-bell" id="storyBell"></i>
+               <span class="badge" id="storyCount">0</span>
+                 </div>
+                 
+     <ul class="menu" id="pendingList">
+      
+      <li> لا توجد إشعارات</li>
+      
+     </ul>
+     
+</div>
+         
+          <div class="user-profile">
+            <div class="profile-img">
+              <img src="" alt="profile-img"  id="header-profile-pic">
+            </div>
+            <div class="user-info">
+              <div class="user-name"  id="header-user-name">محمد احمد</div>
+              <div class="user-role">مدير النظام</div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+       <!--end header-->
+
+       <div class="content">
+        <div class="page-title">
+          <div class="text">الإعدادات</div>
+         
+        </div>
+       
+         <!-- صورة المستخدم -->
+      <div class=" text-center mb-4">
+        <h5 class="mb-3">تغيير الصورة</h5>
+        <img src=""  id="profile-pic" alt="صورة المستخدم" class="profile-pic mb-3">
+
+        <input type="file" id="upload-pic" accept="image/*" style="display: none;">
+        <div>
+          <button class="btn btn-secondary" id="chang-pic">تغيير الصورة</button>
+          <button class="btn btn-danger" onclick="deleteImg()"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+
+        <!-- البيانات الشخصية -->
+      <div class="settings-box">
+        <h5 class="mb-3">البيانات الشخصية</h5>
+        <form>
+          <div class="mb-3">
+            <div class="row">
+             <div class="col-md-6 ">
+            <label for="firstName" class="form-label">الاسم الأول</label>
+              <input type="text" class="form-control" id="firstName" value=" " required>
+          </div>
+          <div class="col-md-6 ">
+            <label for="lastName" class="form-label">اسم العائلة</label>
+                <input type="text" class="form-control" id="lastName" value=" " required>
+          </div>
+          </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">البريد الإلكتروني</label>
+            <input type="email" id="email" class="form-control" value="">
+            <small id="emailStatus" class="form-text"></small>
+
+          </div>
+          <div class="mb-3">
+            <label class="form-label">رقم الهاتف</label>
+            <input type="text" id="phone" class="form-control" value="">
+          </div>
+          
+          
+          
+    <!-- كلمة المرور الحالية -->
+    <div class="mb-3">
+      <label class="form-label">كلمة المرور الحالية</label>
+      <input type="password" class="form-control" id="oldPassword" required>
+
+    </div>
+
+    <!-- كلمة المرور الجديدة -->
+    <div class="mb-3">
+      <label class="form-label">كلمة المرور الجديدة</label>
+      <input type="password" class="form-control" id="newPassword" required>
+      <div class="form-text">يجب أن تكون كلمة المرور 8 أحرف على الأقل</div>
+    </div>
+
+    <!-- تأكيد كلمة المرور -->
+    <div class="mb-3">
+      <label class="form-label">تأكيد كلمة المرور</label>
+      <input type="password" class="form-control" id="confirmPassword" required>
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="saveSettings()">حفظ التغييرات</button>
+
+        
+        </form>
+      </div>
+
+     
+    </div>
+
+
+    <!-- Preview Modal -->
+<!-- Modal -->
+<div id="storyPreviewModal" class="story-preview-modal">
+    <div class="story-preview-box">
+
+        <span class="story-close-btn" id="closePreviewModal">&times;</span>
+
+        <h2 class="story-preview-title">معاينة القصة</h2>
+
+        <div class="story-info">
+            <p><strong>العنوان:</strong> <span id="previewTitle"></span></p>
+            <p><strong>النوع:</strong> <span id="previewType"></span></p>
+            <p><strong>التصنيف:</strong> <span id="previewCategory"></span></p>
+            <p><strong>الوقت:</strong> <span id="previewTime"></span></p>
+            <p><strong>المحتوى:</strong></p>
+            <p id="previewContent" style="white-space: pre-wrap;"></p>
+
+            <p><strong>الكاتب:</strong> <span id="previewAuthor"></span></p>
+            <p><strong>تاريخ الإنشاء:</strong> <span id="previewCreatedAt"></span></p>
+            
+            <p><strong>المبلغ المتبرع:</strong> <span id="previewDonations"></span></p>
+            <p><strong>العملة:</strong> <span id="previewCurrency"></span></p>
+            <p><strong>عدد المشاهدات:</strong> <span id="previewViews"></span></p>
+
+            <img id="previewImage" style="width: 100%; margin-top: 15px; border-radius: 10px; display:none;" />
+        </div>
+
+    </div>
+</div>
+
+  </div>
+
+
+
+  
+
+
+  
+       <script src="admin.js"></script>
+       <script src="settings.js"></script>
+       <script src="headerAdmin.js"></script>
+       
+   
+</body>
+</html>

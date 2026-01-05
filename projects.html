@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المشاريع</title>
+  <!--bootstrap-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!--fontawsom-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="projects.css" />
+  <link rel="stylesheet" href="./chatbot/chatbot.css" />
+
+</head>
+
+<body >
+
+  <!-- Navbar -->
+    <div id="navbar-placeholder"></div>
+
+<section class="page-header">
+            <h1>المشاريع</h1>
+            <p>ساهم معنا في صنع الأمل عبر دعم أحد هذه المشاريع </p>
+        </section>
+
+<div class="container my-5 "  >
+  
+
+ <!-- Filters and Sorting -->
+        <div class="controls-container">
+            <div class="filter-group">
+                <h3>تصفية حسب النوع</h3>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="health">الصحية</button>
+                    <button class="filter-btn" data-filter="education">التعليمية</button>
+                    <button class="filter-btn" data-filter="living">المعيشية</button>
+                    <button class="filter-btn" data-filter="orphans">رعاية الأيتام</button>
+                </div>
+            </div>
+            
+            <div class="sort-group">
+                <h3>ترتيب حسب</h3>
+                <div class="sort-options">
+                    <button class="sort-btn active" data-sort="default">الأحدث</button>
+                    <button class="sort-btn " data-sort="oldest">الأقدم</button>
+                    <button class="sort-btn" data-sort="urgent">الأكثر إلحاحاً</button>
+                    <button class="sort-btn" data-sort="remaining">المتبقي قليل</button>
+                </div>
+            </div>
+            
+            <div class="search-box bg-white p-3 rounded-4 d-flex justify-content-center align-items-center">
+              <form class="position-relative">
+                <input type="text"  class="form-control   ps-5" id="search" placeholder="ابحث عن المشروع...">
+                <i class="fas fa-search position-absolute top-50 start-0 fs-6 text-dark ms-3"></i>
+            </form>
+              </div>
+        </div>
+  <!-- المشاريع -->
+   <div class="card border-0 rounded-4 shadow-sm bg-light">
+    <div class=" p-5 ">
+      
+         <!-- زر إضافة مشروع (للأدمن فقط) -->
+  <div class="text-start d-none admin-only" id="add-project"  >
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+      <i class="fa fa-plus"></i> إضافة مشروع جديد
+    </button>
+  </div>
+  <nav class="pb-4">
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">المشاريع</a>
+    <a class="nav-item nav-link" id="nav-Complete-tab" data-bs-toggle="tab" href="#nav-Complete" role="tab" aria-controls="nav-Complete" aria-selected="false">المشاريع المكتملة</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+     <div class="row  " id="projects">
+    
+   
+   
+    
+    </div>
+  </div>
+  <div class="tab-pane fade" id="nav-Complete" role="tabpanel" aria-labelledby="nav-Complete-tab">
+      <div class="row" id="completed-projects"></div>
+
+  </div>
+</div>
+ 
+    </div>
+    </div>
+   
+    <div class="donation-box">
+      <h3 class="donation-title">كل تبرع يصنع فرقاً</h3>
+      <p class="donation-text">
+        مساهمتك تساعد في تحقيق أحلام الآخرين وبناء مجتمع أفضل. 
+        انضم إلينا في رحلة العطاء والتغيير الإيجابي.
+      </p>
+    </div>
+  </div>
+ 
+
+  
+<!-- نافذة إضافة مشروع -->
+<div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <form class="modal-content" id="addProjectForm">
+      <div class="modal-header d-flex justify-content-between bg-primary text-white">
+        <div>
+        <h5 class="modal-title" id="addProjectLabel">إضافة مشروع جديد</h5>
+        </div><div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      </div>
+
+      <div class="modal-body p-4">
+        <div class="mb-3">
+          <label class="form-label">عنوان المشروع</label>
+          <input type="text" class="form-control" id="add-title" name="title" placeholder="أدخل عنوان المشروع" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">نوع المشروع</label>
+          <select class="form-select" id="add-category" name="category" required>
+            <option value="تعليمية">تعليمي</option>
+            <option value="صحية">صحي</option>
+            <option value="معيشية">معيشية</option>
+            <option value="رعاية أيتام">رعاية أيتام</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">الوصف المختصر</label>
+          <textarea class="form-control" id="add-description" name="description" rows="2" placeholder="أدخل وصف مختصر للمشروع" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">التفاصيل</label>
+          <textarea class="form-control" id="add-details" name="details" rows="3" placeholder="أدخل وصف مفصل للمشروع" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">الهدف من المشروع</label>
+          <textarea class="form-control" id="add-goals" name="goals" rows="3" placeholder="أدخل أهداف المشروع" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">المبلغ المطلوب</label>
+          <input type="number" class="form-control" id="add-amount" name="goalAmount" placeholder="أدخل المبلغ بالشيكل" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="startDate">تاريخ بداية المشروع</label>
+          <input type="date" id="startDate" name="startDate" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="endDate">تاريخ نهاية المشروع</label>
+          <input type="date" id="endDate" name="endDate" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">صورة المشروع الرئيسية</label>
+          <input type="file" class="form-control" id="add-main-image" name="mainImage" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">صور أكثر عن المشروع</label>
+          <input type="file" class="form-control" id="add-sub-images" name="subImages" multiple>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="urgent" name="isUrgent">
+  <label class="form-check-label" for="urgent">عاجل</label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="submit" class="btn btn-primary "id="save-add">حفظ المشروع</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <!-- نافذة تعديل مشروع -->
+<div class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between bg-primary text-white">
+        <div>
+        <h5 class="modal-title" id="editProjectLabel">تعديل المشروع</h5>
+         </div><div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">عنوان المشروع</label>
+            <input type="text" class="form-control" id="edit-title">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">نوع المشروع</label>
+            <select class="form-select" id="edit-category">
+              <option value="تعليمية">تعليمي</option>
+              <option value="صحية">صحي</option>
+              <option value="معيشية">معيشية</option>
+              <option value="رعاية أيتام">رعاية أيتام</option>
+            </select>
+          </div>
+        
+          <div class="mb-3">
+            <label class="form-label">الوصف المختصر</label>
+            <textarea class="form-control" rows="2" id="edit-description"></textarea>
+          </div>
+            <div class="mb-3">
+            <label class="form-label">وصف المشروع</label>
+            <textarea class="form-control" rows="3" id="edit-desc"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">الهدف من المشروع</label>
+            <textarea class="form-control" rows="3" id="edit-goals"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">المبلغ المطلوب</label>
+            <input type="number" class="form-control" id="edit-amount">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">صورة المشروع</label>
+            <input type="file" class="form-control" id="edit-image">
+
+          </div>
+
+          <div class="mb-3">
+                 <label class="form-label">صور إضافية</label>
+                 <input type="file" class="form-control" id="edit-sub-images" multiple>
+          </div>
+
+                  <div class="mb-3">
+  <label class="form-check-label" for="edit-urgent">عاجل</label>
+  <input type="checkbox" class="form-check-input" id="edit-urgent">
+</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-primary" id="save-edit">حفظ التعديلات</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- شات بوت محسن بدون إدخال نص -->
+<div class="chatbot-container">
+    <div class="chatbot-icon" onclick="toggleChat()">
+        <i class="fas fa-hands-helping"></i>
+    </div>
+    
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> مساعد GiveHope</h3>
+            <button class="chatbot-close" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chatbot-body" id="chatbotBody">
+            <div class="chatbot-message bot-message">
+                مرحبًا! 👋 أنا مساعد GiveHope، كيف يمكنني مساعدتك اليوم؟
+            </div>
+            <div class="chatbot-message bot-message">
+                يمكنك اختيار أحد الأسئلة الشائعة من القائمة بالأسفل.
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+        </div>
+
+        <div class="quick-replies">
+            <button onclick="sendQuickReply('كيف أتبرع؟')"><i class="fas fa-hand-holding-heart"></i> كيف أتبرع؟</button>
+            <button onclick="sendQuickReply('ما هي طرق الدفع المتاحة؟')"><i class="fas fa-credit-card"></i> طرق الدفع</button>
+            <button onclick="sendQuickReply('هل التبرع آمن؟')"><i class="fas fa-shield-alt"></i> أمان التبرع</button>
+            <button onclick="sendQuickReply('كيف أتأكد من وصول تبرعي؟')"><i class="fas fa-check-circle"></i> متابعة التبرع</button>
+            <button onclick="sendQuickReply('كيف يتم استخدام تبرعاتي؟')"><i class="fas fa-shield-alt"></i>  استخدام التبرعات</button>
+            <button onclick="sendQuickReply('ماذا لو حدث خطأ أثناء عملية التبرع؟')"><i class="fas fa-shield-alt"></i>  لو حدث خطا </button>
+           
+        </div>
+    </div>
+</div>
+
+
+
+<!--footer-->
+ <div id="footer-placeholder"></div>
+  
+<!-- navbar -->
+  <script>
+     function loadHTML(id, file) {
+        fetch(file)
+          .then((res) => res.text())
+          .then((html) => (document.getElementById(id).innerHTML = html))
+          .catch((err) => console.error("خطأ في تحميل", file, err));
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        loadHTML("navbar-placeholder", "navbar.html");
+        loadHTML("footer-placeholder", "footer.html");
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const check = setInterval(() => {
+          const toggle = document.getElementById("menuToggle");
+          const nav = document.getElementById("navLinks");
+          if (toggle && nav) {
+            clearInterval(check);
+            toggle.onclick = (e) => {
+              e.stopPropagation();
+              nav.classList.toggle("active");
+            };
+            document.onclick = (e) => {
+              if (!e.target.closest(".navbar")) {
+                nav.classList.remove("active");
+                document
+                  .querySelectorAll(".dropdown")
+                  .forEach((d) => d.classList.remove("active"));
+              }
+            };
+            nav.onclick = (e) => e.stopPropagation();
+            document.querySelectorAll(".dropdownToggle").forEach((btn) => {
+              btn.onclick = (e) => {
+                if (window.innerWidth <= 992) {
+                  e.preventDefault();
+                  const dropdown = btn.parentElement;
+                  dropdown.classList.toggle("active");
+                  document.querySelectorAll(".dropdown").forEach((d) => {
+                    if (d !== dropdown) d.classList.remove("active");
+                  });
+                }
+              };
+            });
+            window.onresize = () => {
+              if (window.innerWidth > 992) {
+                nav.classList.remove("active");
+                document
+                  .querySelectorAll(".dropdown")
+                  .forEach((d) => d.classList.remove("active"));
+              }
+            };
+          }
+        }, 100);
+      });
+    </script>
+
+    
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="projects.js"></script>
+
+
+
+</body>
+</html>
+

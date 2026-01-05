@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المُتبرع</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&family=Tajawal:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Thedonor.css">
+</head>
+
+<body>
+
+    <div id="navbar-container"></div>
+
+
+
+    <!-- رأس الصفحة -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">منصة التبرعات الخيرية</div>
+                <div class="user-info">
+                    <div class="user-avatar">م</div>
+                    <div>
+                        <div>أهلاً بك، محمد</div>
+                        <div style="font-size: 14px; opacity: 0.8;">متبرع منذ <span id="join-year"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- شريط التنقل -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li class="active" data-section="home">الرئيسية</li>
+                <li data-section="donations">سجل التبرعات</li>
+                <li data-section="sponsors">سجل الكفالات</li>
+                <li data-section="profile">الملف الشخصي</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="container">
+        <!-- قسم الرئيسية -->
+        <div class="tab-content active" id="home">
+            <!-- الملف الشخصي المصغر -->
+            <div class="profile-section">
+                <div class="profile-avatar">م</div>
+                <div class="profile-info">
+                    <h3>محمد أحمد</h3>
+                    <p>mohamed@example.com</p>
+
+                </div>
+            </div>
+
+            <!-- إحصائيات شخصية -->
+            <h2 class="section-title">إحصائيات شخصية</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div>إجمالي التبرعات</div>
+                    <div class="stat-value donation-amount">5,750د.ا
+
+                    </div>
+                    <div>منذ انضمامك للمنصة</div>
+                </div>
+                <div class="stat-card">
+                    <div>هدفك الشخصي</div>
+                    <div class="stat-value-goal" id="stat-goal">د.ا10000
+
+                    </div>
+                    <div id="stat-goal-percentage">70% من هدفك</div>
+                </div>
+                <div class="stat-card">
+                    <div>عدد الحالات المساعدة</div>
+                    <div class="stat-value" id="stat-total-donation-requests">12 حالة</div>
+
+                </div>
+
+            </div>
+
+            <!-- بطاقات لوحة التحكم الرئيسية -->
+            <div class="dashboard-cards">
+                <!-- بطاقة إجمالي التبرعات -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">رصيدي الكامل من الخير</div>
+                        <div class="card-icon"><i class="fas fa-donate"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="donation-amount" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">
+                            5,750د.ا</div>
+                        <div>منذ انضمامك للمنصة</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="goal-display-text">70% من هدفك البالغ 10000 د.ا</div>
+                        <button class="btn btn-block" id="updateGoal">تحديث الهدف</button>
+                    </div>
+                </div>
+                
+                <!-- بطاقة آخر التبرعات -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">آخر التبرعات</div>
+                        <div class="card-icon"><i class="fas fa-history"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="donation-list" id="latestDonationsList">
+                        </ul>
+                        <button class="btn btn-block" id="viewAllDonations">عرض الكل</button>
+                    </div>
+                </div>
+
+                <!-- بطاقة حالة الكفالات -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">حالة الكفالات</div>
+                        <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+                    </div>
+                    <div class="card-body">
+                        <div id="nextPaymentInfo">
+                            <!-- سيتم تعبئة معلومات الدفعة القادمة ديناميكياً -->
+                        </div>
+                        <button class="btn btn-block" id="viewAllSponsorships" style="margin-top: 15px;">عرض جميع
+                            الكفالات</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- قسم قصص النجاح -->
+            <h2 class="section-title">قصص النجاح المرتبطة بتبرعاتك:</h2>
+            <div id="successStoriesContainer">
+            </div>
+
+
+
+            <!-- قسم الحملات النشطة -->
+            <h2 class="section-title">الحملات النشطة التي كنت قد تبرعت لها:</h2>
+            <div class="campaigns-grid" id="activeCampaigns">
+                <!-- سيتم تعبئة الحملات النشطة ديناميكياً -->
+            </div>
+
+        </div>
+
+
+        <!-- قسم سجل التبرعات الكامل  -->
+        <div class="tab-content" id="donations">
+            <h2 class="section-title">سجل التبرعات</h2>
+
+            <div class="filters-container">
+                <div class="filter-section" id="type-filters">
+                    <h3>فلترة حسب النوع</h3>
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="education">تعليمية</button>
+                    <button class="filter-btn" data-filter="health">صحية</button>
+                    <button class="filter-btn" data-filter="living">معيشيه</button>
+                    <button class="filter-btn" data-filter="Emergency">طوارئ</button>
+                    <button class="filter-btn" data-filter="campaigns">حملات</button>
+                    <button class="filter-btn" data-filter="projects">مشاريع</button>
+                </div>
+
+                <div class="filter-section" id="status-filters">
+                    <h3>فلترة حسب الحالة</h3>
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="pending">قيد التوصيل</button>
+                    <button class="filter-btn" data-filter="delivered">تم التوصيل</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span> جميع تبرعاتي </span>
+                        <h5> مبلغ التبرع</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="donation-list" id="donationsList">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم طلبات الكفالة (Sponsor Requests) -->
+        <div class="tab-content" id="sponsors">
+            <h2 class="section-title">طلبات الكفالة</h2>
+
+            <div class="filters-container">
+                <div class="filter-section" id="sponsor-type-filters">
+                    <h3>فلترة حسب نوع الطلب</h3>
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="education">تعليم</button>
+                    <button class="filter-btn" data-filter="health">صحة</button>
+                    <button class="filter-btn" data-filter="living">معيشة</button>
+                    <button class="filter-btn" data-filter="emergency">طوارئ</button>
+                    <button class="filter-btn" data-filter="other">أخرى</button>
+                </div>
+
+                <div class="filter-section" id="sponsor-status-filters">
+                    <h3>فلترة حسب الحالة</h3>
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="active">نشط</button>
+                    <button class="filter-btn" data-filter="completed">مكتمل</button>
+                    <button class="filter-btn" data-filter="pending">قيد المراجعة</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>جميع طلبات الكفالة الدورية المتاحة</span>
+                        <h5>المبلغ الثابت لكل فترة</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info" style="margin-bottom: 20px; border-right: 4px solid #4CAF50;">
+                        <i class="fas fa-info-circle" style="margin-left: 8px;"></i>
+                        <strong>نظام الكفالة الدورية:</strong> يتم دفع مبلغ ثابت بشكل دوري (شهري، فصلي، أو سنوي)
+                        للمستفيد لفترة محددة، مما يوفر دعماً مستمراً ومستقراً.
+                    </div>
+                    <ul class="donation-list" id="sponsorRequestsList">
+                        <!-- سيتم تعبئة قائمة طلبات الكفالة ديناميكياً -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الملف الشخصي -->
+        <div class="tab-content" id="profile">
+            <h2 class="section-title">الملف الشخصي</h2>
+
+            <div class="card">
+                <div class="profile-section" style="margin: 0;">
+                    <div class="profile-avatar">م</div>
+                    <div class="profile-info">
+                        <h3>محمد أحمد</h3>
+                        <p>mohamed@example.com</p>
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstName">الاسم الأول</label>
+                                <input type="text" id="firstName" class="form-control" placeholder="أدخل الاسم الأول">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName">اسم العائلة</label>
+                                <input type="text" id="lastName" class="form-control" placeholder="أدخل اسم العائلة">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-control" value="mohamed@example.com" disabled>
+                        <small class="form-text text-muted">لا يمكن تعديل البريد الإلكتروني</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="أدخل رقم الهاتف">
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button class="btn btn-success" id="saveChanges">حفظ التغييرات</button>
+                        <button class="btn" style="background: #f8f9fa;" id="cancelChanges">إلغاء</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- نافذة التبرع -->
+    <div class="modal" id="donationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">تبرع لحملة <span id="campaignName"></span></h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="donationAmount">المبلغ (ر.س)</label>
+                    <input type="number" id="donationAmount" class="form-control" placeholder="أدخل المبلغ">
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">طريقة الدفع</label>
+                    <select id="paymentMethod" class="form-control">
+                        <option value="">اختر طريقة الدفع</option>
+                        <option value="credit">بطاقة ائتمان</option>
+                        <option value="bank">تحويل بنكي</option>
+                        <option value="mobile">محفظة إلكترونية</option>
+                        <option value="wallet">المحفظة (1,250د.ا
+                            متاحة)</option>
+                    </select>
+                </div>
+                <button class="btn btn-success" id="confirmDonation" style="width: 100%;">تأكيد التبرع</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تفاصيل التبرع -->
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="detailsTitle">تفاصيل التبرع</h3>
+                <button class="close-btn" id="closeDetailsModal">&times;</button>
+            </div>
+            <div class="modal-body" id="detailsContent">
+                <!-- سيتم تعبئة المحتوى ديناميكياً -->
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer-container"></div>
+    <script src="Thedonor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
